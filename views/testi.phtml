@@ -1,0 +1,11 @@
+<h1>Taloyhtion palvelut</h1>
+
+<ul>
+<?
+foreach ($tilat as $tila) {
+	echo "<li><a href='";
+	echo Atomik::url('tila', array('tila' => $tila[0]));
+	echo "'>$tila[0]</a></li>";
+}
+?>
+</ul>
