@@ -1,0 +1,35 @@
+<h1><?= $tila['tila'] ?></h1>
+
+
+<form action="muuta" method="post">
+<input type="hidden" name="tila" value="<?= $tila['tila'] ?>">
+<table>
+  <tr>
+    <td>Ensimmäinen varaus</td><td>Viimeinen varaus</td><td>Hinta</td><td>Muuta</td>
+  </tr>
+   <tr>
+     <td><input type="text" name="alkuaika" value="<?= $tila['alkuaika'] ?>">:00</td> 
+      <td><input type="text" name="loppuaika" value="<?= $tila['loppuaika'] -1 ?>">:00</td> 
+      <td><input type="text" name="hinta" value ="<?= $tila['hinta'] ?>"> &#8364/h</td>
+      <td><input type="text" name="muuta" value="<?= $tila['muuta'] ?> "></td>
+   </tr>
+</table>
+<input type="submit" value="Tallenna muutokset">
+</form>
+<p>
+
+<h3>Varaukset</h3>
+<table><tr><td></td>
+<?php
+for($i = 0; $i < 14; $i++)
+   echo "<td>".date("d.m." , mktime(0, 0, 0, date("m"), date("d")+$i, date("Y")))."</td>";
+echo "</tr>";
+for($i = $tila['alkuaika']; $i < $tila['loppuaika']; $i++){
+   echo "<tr><td>$i:00</td>";
+   if($varaus['alkuaika'] <= $i && $i < $varaus['loppuaika'])
+      echo "<td>Varattu</td>";
+   
+   echo "</tr>";
+}
+?>
+<table>
