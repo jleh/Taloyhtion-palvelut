@@ -4,7 +4,7 @@ $rule = array(
       'loppuaika' => array('required' => true),
       'tila' => array('required' => true),
       'hinta' => array('required' => true),
-      'muuta' => array('required' => true)
+      'muuta' => array('required' => false)
 );
 
 if (($data = Atomik::filter($_POST, $rule)) === false) {

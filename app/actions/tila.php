@@ -13,4 +13,9 @@ $tila = $haku->fetch();
 $haku = Atomik_Db::query("Select * FROM varaukset WHERE tila = '$gTila'");
 $haku->execute();
 $varaus = $haku->fetch();
+
+//Päivämäärmuodostus taulukkoon
+for($d = 0; $d < 14; $d++)
+   $date[$d] = date("d-m-Y" , mktime(0, 0, 0, date("m"), date("d")+$d, date("Y")));
+
 ?>

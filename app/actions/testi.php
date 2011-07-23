@@ -1,5 +1,5 @@
 <?php
 
-$tilat = Atomik_Db::findAll('tilat');
+$tilat = Atomik_Db::findAll('tilat', null, 'tila ASC');
 
 ?>
