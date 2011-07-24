@@ -31,7 +31,10 @@ for($i = $tila['alkuaika']; $i < $tila['loppuaika']; $i++){
       if($varaus['alkuaika'] <= $i && $i < $varaus['loppuaika'] && $varaus['pvm'] == $date[$k])
          echo "<td>Varattu</td>";
    else
-      echo "<td></td>";
+      echo "<td><form action='varaa'><input type='hidden' value='".$tila['tila']."' name='tila'>
+       <input type='hidden' value='$i' name='aika'>
+       <input type='hidden' value='$date[$k]' name='pvm'>
+          <input type='submit' value='Varaa'></form></td>";
    }
     echo "</tr>\n";
 }

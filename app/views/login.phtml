@@ -1,0 +1,9 @@
+<?php
+
+if (Atomik::get('user') == ''){ //Kirjautumisen tarkastus 
+        echo "<h1>Kirjautuminen</h1><form action='' method='post'>
+            Asunto: <input type='text' name='user'><br>
+            Salasana: <input type='password' name='pass'><br>
+            <input type='submit' value='Kirjaudu sisään'>";
+}
+?>
