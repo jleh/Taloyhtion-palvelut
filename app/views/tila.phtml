@@ -28,13 +28,20 @@ echo "</tr>\n";
 for($i = $tila['alkuaika']; $i < $tila['loppuaika']; $i++){
    echo "<tr><td>$i:00</td>";
    for($k = 0; $k < 14; $k++){
-      if($varaus['alkuaika'] <= $i && $i < $varaus['loppuaika'] && $varaus['pvm'] == $date[$k])
-         echo "<td>Varattu</td>";
-   else
-      echo "<td><form action='varaa'><input type='hidden' value='".$tila['tila']."' name='tila'>
-       <input type='hidden' value='$i' name='aika'>
-       <input type='hidden' value='$date[$k]' name='pvm'>
-          <input type='submit' value='Varaa'></form></td>";
+       $vt = 0;
+       foreach ($varaus as $v){
+           if($v['alkuaika'] <= $i && $i < $v['loppuaika'] && $v['pvm'] == $date[$k]){
+             echo "<td>Varattu</td>";
+             $vt = 1;
+           }
+       }
+           if($vt == 0){
+              echo "<td><form action='varaa'><input type='hidden' value='".$tila['tila']."' name='tila'>
+               <input type='hidden' value='$i' name='aika'>
+               <input type='hidden' value='$date[$k]' name='pvm'>
+                  <input type='submit' value='Varaa'></form></td>";
+              
+           }
    }
     echo "</tr>\n";
 }

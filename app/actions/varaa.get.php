@@ -14,6 +14,11 @@ $tila = $data['tila'];
 $pvm = $data['pvm'];
 $aika = $data['aika'];
 
+//Tallennetaan tiedot sessioon
+Atomik::set('session/tila', $tila);
+Atomik::set('session/pvm', $pvm);
+Atomik::set('session/alkuaika', $aika);
+
 //Haetaan aiemmat varauksamalle paivalle
 $haku = Atomik_Db::query("SELECT * FROM varaukset WHERE tila = '$tila' 
         AND pvm = '$pvm'");

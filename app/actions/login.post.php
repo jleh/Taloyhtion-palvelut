@@ -1,6 +1,6 @@
 <?php
 
-if (Atomik::get('user') == '') { //Ei kirjautunut sisään
+if (Atomik::get('session/user') == '') { //Ei kirjautunut sisään
                                  //eli kirjataan käyttäjä sisään
     $rule = array(
         'user' => array('required' => true),
@@ -21,11 +21,13 @@ if (Atomik::get('user') == '') { //Ei kirjautunut sisään
     
     $tulos = $haku->fetch();
     
-    if($tulos['count'] != 1){
+    if($tulos['count'] != 1){//Käyttäjänimi-salasanaparia ei löydy
+            Atomik::redirect('index');
             Atomik::flash ('Nimi tai salasana virheellinen', 'error');
             return;
     }
     
-    Atomik::set('user', $user);
+    Atomik::set('session/user', $user); //Nimi sessioon ja siirto etusivulle
+    Atomik::redirect('index');
 }
 ?>

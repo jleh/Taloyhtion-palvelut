@@ -1,13 +1,15 @@
+<?php if(Atomik::get('session/user') == '') //Kirjautumisen tarkastus
+    Atomik::redirect('login');?>
 <h1>Varaa tila</h1>
 
-<form action="" method="post">
+<form action="tee_varaus" method="post"> 
     <input type="hidden" name="pvm" value="<?php echo $pvm; ?>">
  Varattava tila: <input type="hidden" name="tila" value="<?php echo $vTila->tila; ?>">
  <?php echo $vTila->tila; ?><br>
  Varaus alkaa: <input type="hidden" name="alku" value="<?php echo $aika; ?>"> 
  <?php echo $aika; ?>:00<br>
  Varaus p&auml;&auml;ttyy: <select name="loppu">
-    <?php for($k = $aika; $k < ($vTila->loppuaika); $k++) 
+    <?php for($k = $aika+1; $k < ($vTila->loppuaika); $k++) 
         echo "<option value='$k'>$k:00</option>"; ?>
  </select><br>
 

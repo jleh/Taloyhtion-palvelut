@@ -1,10 +1,10 @@
 <?php
 
-if (Atomik::get('user') == '')
+if (Atomik::get('session/user') == '')
         return;
 
-if (Atomik::get('user') != ''){
-        Atomik::set('user', '');
+if (Atomik::get('session/user') != ''){
+        Atomik::set('session/user', '');
         Atomik::flash('Kirjauduit ulos');
 }
 

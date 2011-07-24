@@ -1,8 +1,6 @@
 <?php
-
-//if(!Atomik::has('request/tila')){
-//	Atomik::flash('Parametri , puuttu')'error';
-//}
+if(Atomik::get('session/user') == '') //Kirjautumisen tarkastus
+    Atomik::redirect('login');
 
 $gTila = $_GET['tila'];
 
@@ -12,7 +10,8 @@ $tila = $haku->fetch();
 
 $haku = Atomik_Db::query("Select * FROM varaukset WHERE tila = '$gTila'");
 $haku->execute();
-$varaus = $haku->fetch();
+while($v = $haku->fetch())
+        $varaus[] = $v;
 
 //Päivämäärmuodostus taulukkoon
 for($d = 0; $d < 14; $d++)
