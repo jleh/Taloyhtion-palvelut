@@ -1,18 +1,20 @@
-<?php if(Atomik::get('session/user') == '') //Kirjautumisen tarkastus
-    Atomik::redirect('login');?>
+<? $this->isLoggedIn(); //Kirjautumisen tarkastus;?>
 <h1>Varaa tila</h1>
 
-<form action="tee_varaus" method="post"> 
-    <input type="hidden" name="pvm" value="<?php echo $pvm; ?>">
- Varattava tila: <input type="hidden" name="tila" value="<?php echo $vTila->tila; ?>">
- <?php echo $vTila->tila; ?><br>
- Varaus alkaa: <input type="hidden" name="alku" value="<?php echo $aika; ?>"> 
- <?php echo $aika; ?>:00<br>
- Varaus p&auml;&auml;ttyy: <select name="loppu">
-    <?php for($k = $aika+1; $k < ($vTila->loppuaika); $k++) 
-        echo "<option value='$k'>$k:00</option>"; ?>
+<form action="tee_varaus" method="post" name="varaus"> 
+    <input type="hidden" name="pvm" value="<? echo $pvm; ?>">
+ Varattava tila: <input type="hidden" name="tila" value="<? echo $vTila->tila; ?>">
+ <? echo $vTila->tila; ?><br>
+ Varaus alkaa: <input type="hidden" name="alku" value="<? echo $aika; ?>"> 
+ <? echo $aika; ?>:00<br>
+ Varaus p&auml;&auml;ttyy: <select name="loppu" onchange="LaskeHinta()">
+    <? $h = $aika;//Ei anneta varattavaksi jo varattuja tunteja
+        do{ $h++; ?>
+            <option value='<? echo $h; ?>'><? echo $h; ?>:00</option>
+        <? }while($varatut_tunnit[$h] == 0 && $h < ($vTila->loppuaika)) ?>
  </select><br>
 
- 
+Varaus maksaa: <? echo $vTila->hinta; ?> €/h<br>
+    <br>
  <input type="submit" value="Tee varaus">
 </form>

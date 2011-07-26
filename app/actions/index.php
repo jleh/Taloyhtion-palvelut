@@ -1,7 +1,5 @@
 <?php
-if(Atomik::get('session/user') == '') //Kirjautumisen tarkastus
-    Atomik::redirect('login');
+$this->isLoggedIn(); //Kirjautumisen tarkastus
 
 $tilat = Atomik_Db::findAll('tilat', null, 'tila ASC');
 
-?>

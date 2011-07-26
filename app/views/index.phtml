@@ -4,11 +4,8 @@
 <a href='<?php echo Atomik::url('logout'); ?>'>Kirjaudu ulos</a>
 
 <ul>
-<?
-foreach ($tilat as $tila) {
-	echo "<li><a href='";
-	echo Atomik::url('tila', array('tila' => $tila[0]));
-	echo "'>$tila[0]</a></li>";
-}
-?>
+<? foreach ($tilat as $tila) { ?>
+	<li><a href='
+	<? echo Atomik::url('tila', array('tila' => $tila[0])); 
+	echo "'>$tila[0]</a></li>"; }?>
 </ul>

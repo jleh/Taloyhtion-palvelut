@@ -1,4 +1,6 @@
 <?php
+$this->isLoggedIn(); //Kirjautumisen tarkastus
+
 $rule = array(
       'alkuaika' => array('required' => true),
       'loppuaika' => array('required' => true),
@@ -20,5 +22,3 @@ $haku->execute();
 
 Atomik::flash('Muutokset tehty', 'success');
 Atomik::redirect('testi');
-
-?>

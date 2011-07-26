@@ -19,22 +19,10 @@ Atomik::set('session/tila', $tila);
 Atomik::set('session/pvm', $pvm);
 Atomik::set('session/alkuaika', $aika);
 
-//Haetaan aiemmat varauksamalle paivalle
-$haku = Atomik_Db::query("SELECT * FROM varaukset WHERE tila = '$tila' 
-        AND pvm = '$pvm'");
-$haku->execute();
-
-$c = 0;
-while($tulos = $haku->fetchObject()){
-	$varaukset[$c]['alku'] = $tulos->alkuaika;
-	$varaukset[$c]['loppu'] = $tulos->loppuaika;
-	$c++;
-}
+$varatut_tunnit = $this->onkoVapaana($tila, $pvm); //Ei näytetä jo varattuja tunteja
 
 //Haetaan tilan tiedot
 $haku = Atomik_Db::query("SELECT * FROM tilat WHERE tila='$tila'");
 $haku->execute();
 
 $vTila = $haku->fetchObject();
-
-?>

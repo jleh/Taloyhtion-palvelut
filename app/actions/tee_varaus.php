@@ -1,7 +1,6 @@
 <?php
 //Tallennetaan varaus tietokantaan
-if(Atomik::get('session/user') == '') //Kirjautumisen tarkastus
-    Atomik::redirect('login');
+$this->isLoggedIn(); //Kirjautumisen tarkastus
 
 $rule = array(
     'loppu' => array('require' => true)
@@ -15,29 +14,62 @@ if(($data = Atomik::filter($_POST, $rule)) === false){ //Parametrien suodatus
 $tila = Atomik::get('session/tila');
 $pvm = Atomik::get('session/pvm');
 $alku = Atomik::get('session/alkuaika');
+$maksu = Atomik::get('session/maksu');
 $loppuaika = $data['loppu'];
 $varaaja = Atomik::get('session/user');
 $kesto = $loppuaika - $alku;
 
-//Tarkastetaan vielä, että varaus voidaan tehdä
-//Rakennetaan kysely
-$lause = "SELECT COUNT(*) FROM varaukset WHERE tila='$tila' AND pvm='$pvm' AND
-          alkuaika IN($alku";
-for($i = $alku+1; $i < $loppuaika; $i++)
-    $lause .= " ,$i";
-$lause .= ") OR loppuaika IN(".($alku+1);
-
-if($alku+2 < $loppuaika){ //Varattava vuoro yli 2h
-    for($i = $alku+1; $i < $loppuaika; $i++)
-        $lause .= " ,$i";
-}
-$lause .= ")";
-
-$haku = Atomik_Db::query($lause);
+//Tarkastetaan että varaus yritetään tehdä sallitulle ajalle
+$haku = Atomik_Db::query("SELECT * FROM tilat WHERE tila='$tila'");
 $haku->execute();
 $tulos = $haku->fetch();
-if($tulos[0] != 0) {
-    Atomik::flash('Varaus ei onnistu', 'error');
-    Atomik::redirect('tila');
+
+if($alku < $tulos['alkuaika'] || $loppuaika > $tulos['loppuaika']) {
+    Atomik::flash('Varausta ei voi tehdä kyseiselle ajalle', 'error');
+    $url = Atomik::url('../tila', array('tila' => $tila));
+    Atomik::redirect($url);
 }
-?>
+
+//Tarkastetaan vielä, ettei samaan aikaan ole muita varauksia
+$varatut_tunnit = $this->onkoVapaana($tila, $pvm);
+
+$onnistuu = true;
+$h = $alku;
+while($onnistuu == true && $h < $loppuaika){
+    if($varatut_tunnit[$h] == 1)
+        $onnistuu = false;
+    $h++;
+}
+
+if($onnistuu == false){
+    Atomik::flash("Varaus ei onnistu kyseiselle ajalle", "error");
+    $url = Atomik::url('../tila', array('tila' => $tila));
+    Atomik::redirect($url);
+}
+else{ //Tehdään varaus
+    //Haetaan uusin varausnumero
+    $haku = Atomik_Db::query('SELECT tunniste FROM varaukset ORDER BY tunniste DESC LIMIT 1');
+    $haku->execute();
+    $t = $haku->fetch();
+    $tunniste = $t['tunniste'] + 1;
+    
+    $koodi = rand(1000, 9999); //Ovikoodi
+    
+    $tiedot = array(
+        'tunniste' => $tunniste,
+        'varaaja' => $varaaja,
+        'tila' => $tila,
+        'pvm' => $pvm,
+        'alkuaika' => $alku,
+        'loppuaika' => $loppuaika,
+        'ovikoodi' => $koodi
+    );
+    
+    Atomik_Db::insert('varaukset', $tiedot);
+    
+    //lasketaan vielä hinta
+    $haku = Atomik_Db::query("SELECT hinta FROM tilat WHERE tila='$tila'");
+    $haku->execute();
+    $t = $haku->fetch();
+    $hinta = $t['hinta'] * $kesto;
+}

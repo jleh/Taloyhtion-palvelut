@@ -30,4 +30,3 @@ if (Atomik::get('session/user') == '') { //Ei kirjautunut sisään
     Atomik::set('session/user', $user); //Nimi sessioon ja siirto etusivulle
     Atomik::redirect('index');
 }
-?>

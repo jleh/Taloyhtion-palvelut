@@ -1,0 +1,9 @@
+<h1>Tilan <? echo $tila; ?> varaus</h1>
+
+Olet varannut tilan ajalle <b><? echo "$pvm $alku - $loppuaika"; ?></b><br>
+Varausnumerosi on <b><? echo $tunniste; ?></b><br>
+Ovikoodi: <b><? echo $koodi; ?></b><br><br>
+
+Varauksen hinta <b><? echo $hinta; ?></b> euroa on lisätty laskuun<br><br>
+
+<a href="<? echo Atomik::url('index'); ?>">Takaisin</a>
