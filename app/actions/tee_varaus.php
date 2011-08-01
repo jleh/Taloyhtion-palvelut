@@ -62,7 +62,8 @@ else{ //Tehdään varaus
         'pvm' => $pvm,
         'alkuaika' => $alku,
         'loppuaika' => $loppuaika,
-        'ovikoodi' => $koodi
+        'ovikoodi' => $koodi,
+        'maksettu' => 'false'
     );
     
     Atomik_Db::insert('varaukset', $tiedot);
