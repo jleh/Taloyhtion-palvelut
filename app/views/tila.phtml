@@ -20,30 +20,30 @@
 
 <h3>Varaukset</h3>
 <table><tr><td></td>
-<?php //Kalenterin tulostus
+<? //Kalenterin tulostus
 for($i = 0; $i < 14; $i++)
-   echo "<td>$date[$i]</td>";
-echo "</tr>\n";
+   echo "<td>$date[$i]</td>"; ?>
+    </tr>
 
-for($i = $tila['alkuaika']; $i < $tila['loppuaika']; $i++){
-   echo "<tr><td>$i:00</td>";
-   for($k = 0; $k < 14; $k++){
+<? for($i = $tila['alkuaika']; $i < $tila['loppuaika']; $i++){ ?>
+   <tr><td><? echo "$i:00"; ?></td>
+<? for($k = 0; $k < 14; $k++){
        $vt = 0;
        foreach ($varaus as $v){
-           if($v['alkuaika'] <= $i && $i < $v['loppuaika'] && $v['pvm'] == $date[$k]){
-             echo "<td>Varattu</td>";
-             $vt = 1;
+           if($v['alkuaika'] <= $i && $i < $v['loppuaika'] && $v['pvm'] == $date[$k]){ ?>
+             <td class="varattu">Varattu</td>
+          <? $vt = 1;
            }
        }
-           if($vt == 0){
-              echo "<td><form action='varaa'><input type='hidden' value='".$tila['tila']."' name='tila'>
-               <input type='hidden' value='$i' name='aika'>
-               <input type='hidden' value='$date[$k]' name='pvm'>
-                  <input type='submit' value='Varaa'></form></td>";
+           if($vt == 0){ ?>
+              <td class="vapaa">
+              <a class="varaa" href="<? echo Atomik::url('varaa', array('tila' => $tila['tila'],
+                  'aika' => $i, 'pvm' => $date[$k])); ?>">Varaa</a>
+              </td>
               
-           }
-   }
-    echo "</tr>\n";
-}
+           <? }
+   } ?>
+    </tr>
+<?}
 ?>
 <table>
