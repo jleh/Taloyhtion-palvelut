@@ -1,0 +1,26 @@
+<h1>Laskut</h1>
+
+Laskuttamattomia varauksia on <?= $luku[0] ?> käyttäjällä.
+<br>
+<? if($luku > 0) { ?>
+    <h3>Laskuta käyttäjiä</h3>
+    <ul>
+        <? while($user = $haku->fetch()){ ?>
+        <li><a href="<?= Atomik::url('teeLasku', array('user' => $user[0])) ?>" target="new">
+                <?= $user[0] ?></a></li>
+        <? } ?>
+    </ul>
+<? } ?>
+
+<h2>Laskut</h2>
+<table>
+<? foreach($laskut as $lasku){ ?>
+    <tr>
+        <td><?= $lasku['viite'] ?></td>
+        <td><?= $lasku['maksaja'] ?></td>
+        <td><?= date("d.m.Y", $lasku['erapaiva']) ?></td>
+        <td><?= $lasku['summa'] ?></td>
+        <td><?= ($lasku['maksettu'] == 'false') ? "Ei maksettu" : "Ei maksettu"  ?></td>
+    </tr>
+<? }?>
+</table>

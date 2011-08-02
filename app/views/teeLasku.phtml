@@ -1,0 +1,26 @@
+<h1>Lasku taloyhtiön palveluiden käytöstä</h1>
+
+Palveleva taloyhtiö as. oy<br>
+Varaustie 2<br>
+1234 Helsinki<br>
+<p>
+    <table>
+    <? foreach($varaus as $rivi) { ?>
+        <tr>
+            <td>Varausnumero</td><td>Päivämäärä</td><td>Varattu tila</td><td>Aika</td><td>Hinta</td>
+        </tr>
+        <tr>
+            <td><?= $rivi['tunniste'] ?></td>
+            <td><?= $rivi['pvm'] ?></td><td><?= $rivi['tila'] ?></td>
+            <td><?= $rivi['alkuaika'] ?>:00 - <?= $rivi['loppuaika'] ?>:00</td>
+            <td><?= $rivi['hinta'] ?></td>
+        </tr>
+    <? } ?>
+    </table>
+</p>
+
+<strong>Yhteensä:</strong> <?= $yhteensa ?> €<br>
+Viitenumero: <?= $viite ?><br>
+<br>
+Maksetaan tilille 12345-1654626<br>
+Eräpäivä: <?= date("d.m.Y", $erapaiva) ?>
