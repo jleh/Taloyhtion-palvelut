@@ -1,8 +1,7 @@
 <h1>Laskut</h1>
 
-Laskuttamattomia varauksia on <?= $luku[0] ?> käyttäjällä.
 <br>
-<? if($luku > 0) { ?>
+
     <h3>Laskuta käyttäjiä</h3>
     <ul>
         <? while($user = $haku->fetch()){ ?>
@@ -10,7 +9,7 @@ Laskuttamattomia varauksia on <?= $luku[0] ?> käyttäjällä.
                 <?= $user[0] ?></a></li>
         <? } ?>
     </ul>
-<? } ?>
+
 
 <h2>Laskut</h2>
 <table>
