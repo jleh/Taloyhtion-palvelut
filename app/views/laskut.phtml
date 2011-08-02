@@ -3,23 +3,21 @@
 <br>
 
     <h3>Laskuta käyttäjiä</h3>
-    <ul>
-        <? while($user = $haku->fetch()){ ?>
-        <li><a href="<?= Atomik::url('teeLasku', array('user' => $user[0])) ?>" target="new">
-                <?= $user[0] ?></a></li>
-        <? } ?>
-    </ul>
+        <?php foreach($users as $nimi){ ?>
+        <a href="<?php echo Atomik::url('teeLasku', array('user' => $nimi)); ?>" target="new">
+                <?php echo $nimi; ?></a></li><br>
+        <?php } ?>
 
 
 <h2>Laskut</h2>
 <table>
-<? foreach($laskut as $lasku){ ?>
+<?php foreach($laskut as $lasku){ ?>
     <tr>
         <td><?= $lasku['viite'] ?></td>
         <td><?= $lasku['maksaja'] ?></td>
-        <td><?= date("d.m.Y", $lasku['erapaiva']) ?></td>
+        <td><?= $this->muotoile_paiva($lasku['erapaiva']) ?></td>
         <td><?= $lasku['summa'] ?></td>
-        <td><?= ($lasku['maksettu'] == 'false') ? "Ei maksettu" : "Ei maksettu"  ?></td>
+        <td><?= $this->maksun_tila($lasku['maksettu'])  ?></td>
     </tr>
 <? }?>
 </table>

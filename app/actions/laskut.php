@@ -9,3 +9,8 @@ $haku->execute();
 //Haetaan laskut
 $laskut = Atomik_Db::findAll('laskut');
 
+while($user = $haku->fetch()){
+    $users[] = $user[0];
+}
+if($user == null)
+    $users[] = "";

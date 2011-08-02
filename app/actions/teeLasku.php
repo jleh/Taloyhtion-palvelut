@@ -9,8 +9,8 @@ if(($data = Atomik::filter($_GET, $rule)) === false){ //Parametrien suodatus
 }
 
 //Katsotaan onko käyttäjällä maksamattomia varauksia
-$haku = Atomik_Db::query("SELECT COUNT(*) FROM varaukset WHERE varaaja = '".$data['user']."'
-    AND maksettu='false'");
+$haku = Atomik_Db::query("SELECT COUNT(*) FROM varaukset WHERE varaaja = ?
+    AND maksettu=?", array($data['user'], 'false'));
 $haku->execute();
 
 $tulos = $haku->fetch();

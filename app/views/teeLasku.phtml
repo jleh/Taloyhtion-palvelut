@@ -12,7 +12,7 @@ Varaustie 2<br>
         <tr>
             <td><?= $rivi['tunniste'] ?></td>
             <td><?= $rivi['pvm'] ?></td><td><?= $rivi['tila'] ?></td>
-            <td><?= $rivi['alkuaika'] ?>:00 - <?= $rivi['loppuaika'] ?>:00</td>
+            <td><?= $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']) ?></td>
             <td><?= $rivi['hinta'] ?></td>
         </tr>
     <? } ?>
@@ -23,4 +23,4 @@ Varaustie 2<br>
 Viitenumero: <?= $viite ?><br>
 <br>
 Maksetaan tilille 12345-1654626<br>
-Eräpäivä: <?= date("d.m.Y", $erapaiva) ?>
+Eräpäivä: <?= $this->muotoile_paiva($erapaiva) ?>
