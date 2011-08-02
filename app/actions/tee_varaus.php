@@ -55,6 +55,12 @@ else{ //Tehdään varaus
     
     $koodi = rand(1000, 9999); //Ovikoodi
     
+    //lasketaan vielä hinta
+    $haku = Atomik_Db::query("SELECT hinta FROM tilat WHERE tila='$tila'");
+    $haku->execute();
+    $t = $haku->fetch();
+    $hinta = $t['hinta'] * $kesto;
+    
     $tiedot = array(
         'tunniste' => $tunniste,
         'varaaja' => $varaaja,
@@ -63,14 +69,10 @@ else{ //Tehdään varaus
         'alkuaika' => $alku,
         'loppuaika' => $loppuaika,
         'ovikoodi' => $koodi,
-        'maksettu' => 'false'
+        'maksettu' => 'false',
+        'hinta' => $hinta
     );
     
     Atomik_Db::insert('varaukset', $tiedot);
     
-    //lasketaan vielä hinta
-    $haku = Atomik_Db::query("SELECT hinta FROM tilat WHERE tila='$tila'");
-    $haku->execute();
-    $t = $haku->fetch();
-    $hinta = $t['hinta'] * $kesto;
 }
