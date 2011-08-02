@@ -1,21 +1,21 @@
 <h1>Taloyhtion palvelut</h1>
 
-<? echo Atomik::get('session/user'); ?> kirjautuneena sisään. 
-<a href='<? echo Atomik::url('logout'); ?>'>Kirjaudu ulos</a>
+<?php echo Atomik::get('session/user'); ?> kirjautuneena sisään. 
+<a href='<?php echo Atomik::url('logout'); ?>'>Kirjaudu ulos</a>
 
-<? echo date("d-m-Y"); ?>
+<?php echo date("d-m-Y"); ?>
 
 <ul>
-<? foreach ($tilat as $tila) { ?>
-	<li><a href='<? echo Atomik::url('tila', array('tila' => $tila[0])); echo "'>$tila[0]</a></li>"; }?>
+<?php foreach ($tilat as $tila) { ?>
+	<li><a href='<?php echo Atomik::url('tila', array('tila' => $tila[0])); echo "'>$tila[0]</a></li>"; }?>
 </ul>
 
 <h3>Omat varaukset</h3>
 <ul>
-<? if($varauksia == true) {
+<?php if($varauksia == true) {
     foreach($varaus as $rivi) { ?>
-    <li><?= $rivi['pvm'] ?> <?= $rivi['tila'] ?> <?= $rivi['alkuaika'] ?>:00
-     - <?= $rivi['loppuaika'] ?>:00</li>
-<?  }
+    <li><?php echo $rivi['pvm']; ?> <?php echo $rivi['tila'] ?> 
+    <?php echo $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']) ?></li>
+<?php  }
 }?>
 </ul>

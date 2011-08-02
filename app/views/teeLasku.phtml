@@ -5,22 +5,22 @@ Varaustie 2<br>
 1234 Helsinki<br>
 <p>
     <table>
-    <? foreach($varaus as $rivi) { ?>
+    <?php foreach($varaus as $rivi) { ?>
         <tr>
             <td>Varausnumero</td><td>Päivämäärä</td><td>Varattu tila</td><td>Aika</td><td>Hinta</td>
         </tr>
         <tr>
-            <td><?= $rivi['tunniste'] ?></td>
-            <td><?= $rivi['pvm'] ?></td><td><?= $rivi['tila'] ?></td>
-            <td><?= $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']) ?></td>
-            <td><?= $rivi['hinta'] ?></td>
+            <td><?php echo $rivi['tunniste']; ?></td>
+            <td><?php echo $rivi['pvm']; ?></td><td><?php echo $rivi['tila']; ?></td>
+            <td><?php echo $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']); ?></td>
+            <td><?php echo $rivi['hinta']; ?></td>
         </tr>
-    <? } ?>
+    <?php } ?>
     </table>
 </p>
 
-<strong>Yhteensä:</strong> <?= $yhteensa ?> €<br>
-Viitenumero: <?= $viite ?><br>
+<strong>Yhteensä:</strong> <?php echo $yhteensa; ?> €<br>
+Viitenumero: <?php echo $viite; ?><br>
 <br>
 Maksetaan tilille 12345-1654626<br>
-Eräpäivä: <?= $this->muotoile_paiva($erapaiva) ?>
+Eräpäivä: <?php echo $this->muotoile_paiva($erapaiva); ?>

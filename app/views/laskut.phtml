@@ -13,11 +13,11 @@
 <table>
 <?php foreach($laskut as $lasku){ ?>
     <tr>
-        <td><?= $lasku['viite'] ?></td>
-        <td><?= $lasku['maksaja'] ?></td>
-        <td><?= $this->muotoile_paiva($lasku['erapaiva']) ?></td>
-        <td><?= $lasku['summa'] ?></td>
-        <td><?= $this->maksun_tila($lasku['maksettu'])  ?></td>
+        <td><?php echo $lasku['viite']; ?></td>
+        <td><?php echo $lasku['maksaja']; ?></td>
+        <td><?php echo $this->muotoile_paiva($lasku['erapaiva']); ?></td>
+        <td><?php echo $lasku['summa']; ?></td>
+        <td><?php echo $this->maksun_tila($lasku['maksettu']); ?></td>
     </tr>
-<? }?>
+<?php }?>
 </table>
