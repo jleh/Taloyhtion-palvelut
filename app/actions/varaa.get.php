@@ -7,7 +7,9 @@ $rule = array( //Parametrit
 );
 
 if(($data = Atomik::filter($_GET, $rule)) === false){ //Parametrien suodatus
-	return;
+    Atomik::flash('Varaus ei onnistu', 'error');
+    Atomik::redirect('index');
+    return;
 }
 
 $tila = $data['tila'];
