@@ -7,8 +7,13 @@
 
 <ul>
 <?php foreach ($tilat as $tila) { ?>
-	<li><a href='<?php echo Atomik::url('tila', array('tila' => $tila[0])); echo "'>$tila[0]</a></li>"; }?>
+	<li><a href='<?php echo Atomik::url('tila', array('tila' => $tila[0])); ?>'>
+                <?php echo $tila[0]; ?></a></li> <?}?>
 </ul>
+
+<br>
+<a href="<? echo Atomik::url('teeLasku', array('user' => Atomik::get('session/user'))); ?>"
+   target="new">Tee lasku maksamattomista varauksistasi</a><br>
 
 <h3>Omat varaukset</h3>
 <ul>

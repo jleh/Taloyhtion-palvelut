@@ -4,8 +4,21 @@ $rule = array( //Parametrit
 	'user' => array('required' => true)
 );
 
+$this->isLoggedIn(); //Onko kirjautunut sisään
+
 if(($data = Atomik::filter($_GET, $rule)) === false){ //Parametrien suodatus
-	return;
+	Atomik::redirect('index');
+        return;
+}
+
+$eiAdmin = false; //Käytetään alempana uudelleenohjaukseen
+if($this->isAdministrator() == false) { //Jos ei admin, niin laskun voi tehdä vain itselleen
+    if(Atomik::get('session/user') != $data['user']){
+            Atomik::flash('Ei käyttöoikeutta', 'error');
+            Atomik::redirect('index');
+            return;
+    }
+    $eiAdmin = true;
 }
 
 //Katsotaan onko käyttäjällä maksamattomia varauksia
@@ -18,7 +31,7 @@ $tulos = $haku->fetch();
 if($tulos[0] == 0) { //Jos maksamattomia ei ole, ei tehdä laskuakaan
     $varaus = 0;
     Atomik::flash('Ei maksamattomia varauksia', 'error');
-    Atomik::redirect('laskut');
+    $eiAdmin == false ? Atomik::redirect('laskut') : Atomik::redirect('index');
     return;
 }
 

@@ -6,8 +6,6 @@ function isAdministrator() {
         'admin' => 'true') );
     
     if($testi != 1){
-        Atomik::flash('Ei käyttöoikeutta', 'error');
-        Atomik::redirect ('index');
         return false;
     }
     else
