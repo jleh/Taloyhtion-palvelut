@@ -23,8 +23,8 @@ if($tulos[0] == 0) { //Jos maksamattomia ei ole, ei tehdä laskuakaan
 }
 
 //Jos maksamattomia varauksia on, haetaan ne
-$haku = Atomik_Db::query("SELECT * FROM varaukset WHERE varaaja = '".$data['user']."'
-    AND maksettu='false'");
+$haku = Atomik_Db::query("SELECT * FROM varaukset WHERE varaaja = ?
+    AND maksettu = ?", array($data['user'], 'false'));
 $haku->execute();
 while($v = $haku->fetch())
         $varaus[] = $v;
@@ -39,11 +39,10 @@ $teksti = ""; //Taulussa varattu tila lisähuomautuksille, jos sellaisille tulee
 $erapaiva = mktime(0, 0, 0, date("m"), date("d")+30, date("Y")); //Laitetaan eräpäivä kuukauden päähän
 
 //Tallennetaan lasku kantaan
-$tallennus = Atomik_Db::query("INSERT INTO laskut VALUES($viite, 'false', '".$data['user']."', 
-    $yhteensa, $erapaiva, '$teksti')");
-$tallennus->execute();
+Atomik_Db::insert('laskut', $viite, 'false', $data['user'], $yhteensa, $erapaiva, $teksti);
 
 //Asetetaan varaukset maksetuiksi
-$tallennus = Atomik_Db::query("UPDATE varaukset SET maksettu = 'true' 
-    WHERE varaaja = '".$data['user']."'");
+$tallennus = Atomik_Db::query("UPDATE varaukset SET maksettu = ? 
+    WHERE varaaja = ?", array('true', $data['user']));
 $tallennus->execute();
+
