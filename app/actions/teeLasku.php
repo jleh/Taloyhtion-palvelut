@@ -39,7 +39,9 @@ $teksti = ""; //Taulussa varattu tila lisähuomautuksille, jos sellaisille tulee
 $erapaiva = mktime(0, 0, 0, date("m"), date("d")+30, date("Y")); //Laitetaan eräpäivä kuukauden päähän
 
 //Tallennetaan lasku kantaan
-Atomik_Db::insert('laskut', $viite, 'false', $data['user'], $yhteensa, $erapaiva, $teksti);
+$tallennus = Atomik_Db::query("INSERT INTO laskut VALUES(?, ?, ?, ?, ?, ?)", 
+        array($viite, 'false', $data['user'], $yhteensa, $erapaiva, $teksti));
+$tallennus->execute();
 
 //Asetetaan varaukset maksetuiksi
 $tallennus = Atomik_Db::query("UPDATE varaukset SET maksettu = ? 
