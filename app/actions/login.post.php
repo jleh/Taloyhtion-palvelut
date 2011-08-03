@@ -22,8 +22,8 @@ if (Atomik::get('session/user') == '') { //Ei kirjautunut sisään
     $tulos = $haku->fetch();
     
     if($tulos['count'] != 1){//Käyttäjänimi-salasanaparia ei löydy
-            Atomik::redirect('index');
             Atomik::flash ('Nimi tai salasana virheellinen', 'error');
+            Atomik::redirect('index');
             return;
     }
     
