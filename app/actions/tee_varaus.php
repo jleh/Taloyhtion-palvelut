@@ -3,11 +3,13 @@
 $this->isLoggedIn(); //Kirjautumisen tarkastus
 
 $rule = array(
-    'loppu' => array('require' => true)
+    'loppu' => array('required' => true)
 );
 
 if(($data = Atomik::filter($_POST, $rule)) === false){ //Parametrien suodatus
-	return;
+    Atomik::flash('Varaus ei onnistu', 'error');
+    Atomik::redirect('index');
+    return;
 }
 
 //Muuttujat

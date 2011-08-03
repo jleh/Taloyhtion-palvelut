@@ -1,13 +1,25 @@
 <?php
 $this->isLoggedIn();
 
-$gTila = $_GET['tila'];
+$rule = array( //Parametrit
+	'tila' => array('required' => true)
+);
 
-$haku = Atomik_Db::query("SELECT * FROM tilat WHERE tila = '$gTila'");
+if(($data = Atomik::filter($_GET, $rule)) === false){ //Parametrien suodatus
+	Atomik::redirect('index');
+        return;
+}
+
+$haku = Atomik_Db::query("SELECT * FROM tilat WHERE tila = ?", array($data['tila']));
 $haku->execute();
 $tila = $haku->fetch();
 
-$haku = Atomik_Db::query("Select * FROM varaukset WHERE tila = '$gTila'");
+if($tila == null){
+    Atomik::flash('Tilaa ei ole olemassa', 'error');
+    Atomik::redirect('index');
+}
+
+$haku = Atomik_Db::query("SELECT * FROM varaukset WHERE tila = ?", array($data['tila']));
 $haku->execute();
 $varaus[] = 0;
 while($v = $haku->fetch())

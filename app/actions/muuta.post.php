@@ -1,5 +1,9 @@
 <?php
 $this->isLoggedIn(); //Kirjautumisen tarkastus
+if($this->isAdministrator() == false ) {
+    Atomik::flash('Ei käyttöoikeutta', 'error');    
+    Atomik::redirect('index');
+}
 
 $rule = array(
       'alkuaika' => array('required' => true),
