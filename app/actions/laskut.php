@@ -8,7 +8,12 @@ $haku->execute();
 
 
 //Haetaan laskut
-$laskut = Atomik_Db::findAll('laskut');
+$haku = Atomik_Db::query('SELECT * FROM laskut ORDER BY viite DESC');
+$haku->execute();
+
+while($lasku = $haku->fetch())
+        $laskut[] = $lasku;
+
 
 while($user = $haku->fetch()){
     $users[] = $user[0];

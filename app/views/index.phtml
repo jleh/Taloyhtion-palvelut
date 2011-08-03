@@ -12,9 +12,12 @@
 </ul>
 
 <br>
+<?php if($this->testAdmin() == false){ ?>
 <a href="<? echo Atomik::url('teeLasku', array('user' => Atomik::get('session/user'))); ?>"
    target="new">Tee lasku maksamattomista varauksistasi</a><br>
-
+<?php } else { ?>
+   <a href="<?php echo Atomik::url('laskut'); ?>">Laskujen hallinta</a><br>
+<?php } ?>
 <h3>Omat varaukset</h3>
 <ul>
 <?php if($varauksia == true) {
