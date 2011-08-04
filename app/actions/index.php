@@ -12,3 +12,7 @@ if($varauksia != 0) {
     while($v = $varaukset->fetch())
             $varaus[] = $v;
 }
+
+//Ilmoitetaan käyttäjälle maksamattomista varauksista
+$maksamattomat = Atomik_Db::count('varaukset', array('varaaja' => Atomik::get('session/user'),
+        'maksettu' => 'false'));

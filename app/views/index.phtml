@@ -13,8 +13,9 @@ Tänään on <?php echo date("d.m.Y"); ?>
 
 <br>
 <?php if(!$this->testAdmin()){ ?>
+Sinulla on <?php echo $maksamattomat; ?> kpl laskuttamattomia varauksia.<br>
 <a href="<? echo Atomik::url('teeLasku', array('user' => Atomik::get('session/user'))); ?>"
-   target="new">Tee lasku maksamattomista varauksistasi</a><br>
+   target="new">Tee lasku varauksistasi</a><br>
 <?php } else { ?>
    <a href="<?php echo Atomik::url('laskut'); ?>">Laskujen hallinta</a><br>
 <?php } ?>
@@ -22,8 +23,9 @@ Tänään on <?php echo date("d.m.Y"); ?>
 <ul>
 <?php if($varauksia != 0) {
     foreach($varaus as $rivi) { ?>
-    <li><?php echo $this->muotoile_paiva($rivi['pvm']); ?> <?php echo $rivi['tila'] ?> 
-    <?php echo $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']) ?>
+    <li><b><?php echo $this->muotoile_paiva($rivi['pvm']); ?></b> <?php echo $rivi['tila'] ?> 
+    <?php echo $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']) ?> 
+        <?php echo $rivi['ovikoodi']; ?>
         <a href="<? echo Atomik::url('peruuta', array('tunniste' => $rivi['tunniste'])); ?>">
         Peruuta varaus</a></li>
 <?php  }
