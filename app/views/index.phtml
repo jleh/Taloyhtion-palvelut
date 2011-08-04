@@ -12,7 +12,7 @@
 </ul>
 
 <br>
-<?php if($this->testAdmin() == false){ ?>
+<?php if(!$this->testAdmin()){ ?>
 <a href="<? echo Atomik::url('teeLasku', array('user' => Atomik::get('session/user'))); ?>"
    target="new">Tee lasku maksamattomista varauksistasi</a><br>
 <?php } else { ?>
@@ -20,7 +20,7 @@
 <?php } ?>
 <h3>Omat varaukset</h3>
 <ul>
-<?php if($varauksia == true) {
+<?php if($varauksia != 0) {
     foreach($varaus as $rivi) { ?>
     <li><?php echo $rivi['pvm']; ?> <?php echo $rivi['tila'] ?> 
     <?php echo $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']) ?></li>

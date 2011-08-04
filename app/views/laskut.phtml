@@ -19,7 +19,7 @@
         <td><?php echo $this->muotoile_paiva($lasku['erapaiva']); ?></td>
         <td><?php echo $lasku['summa']; ?></td>
         <td><?php echo $this->maksun_tila($lasku['maksettu']); ?></td>
-        <td><?php if($lasku['maksettu'] == false) { ?>
+        <td><?php if(!$lasku['maksettu']) { ?>
             <a href="<? echo Atomik::url('merkitseMaksetuksi', array('viite' => $lasku['viite'])); ?>">
                 Merkitse maksetuksi</a> <?php } ?></td>
     </tr>

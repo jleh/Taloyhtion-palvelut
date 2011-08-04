@@ -11,7 +11,7 @@ if(($data = Atomik::filter($_GET, $rule)) === false){ //Parametrien suodatus
         return;
 }
 
-if($this->testAdmin() == false) { //Jos ei admin, niin laskun voi tehdä vain itselleen
+if(!$this->testAdmin()) { //Jos ei admin, niin laskun voi tehdä vain itselleen
     if(Atomik::get('session/user') != $data['user']){
             Atomik::flash('Ei käyttöoikeutta', 'error');
             Atomik::redirect('index');
@@ -29,7 +29,7 @@ $tulos = $haku->fetch();
 if($tulos[0] == 0) { //Jos maksamattomia ei ole, ei tehdä laskuakaan
     $varaus = 0;
     Atomik::flash('Ei maksamattomia varauksia', 'error');
-    $this->testAdmin() == true ? Atomik::redirect('laskut') : Atomik::redirect('index');
+    Atomik::redirect($this->testAdmin() ? 'laskut' : 'index');
     return;
 }
 

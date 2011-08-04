@@ -14,7 +14,7 @@ $haku = Atomik_Db::query("SELECT * FROM tilat WHERE tila = ?", array($data['tila
 $haku->execute();
 $tila = $haku->fetch();
 
-if($tila == null){
+if(!$tila){
     Atomik::flash('Tilaa ei ole olemassa', 'error');
     Atomik::redirect('index');
 }

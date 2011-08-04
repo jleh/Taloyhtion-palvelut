@@ -30,3 +30,16 @@ table, td {
 	border: 1px solid;
 	border-collapse: collapse;
 }
+
+td.varattu {
+  background-color: #FF0000;
+}
+
+td.vapaa {
+    background-color: #33FF33;  
+}
+
+.varaa {
+    color: black;
+    text-decoration: none;
+}
