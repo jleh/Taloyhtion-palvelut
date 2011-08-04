@@ -1,9 +1,9 @@
-<h1>Taloyhtion palvelut</h1>
+<h1>Taloyhtion tilojen varaus</h1>
 
 <?php echo Atomik::get('session/user'); ?> kirjautuneena sisään. 
-<a href='<?php echo Atomik::url('logout'); ?>'>Kirjaudu ulos</a>
+<a href='<?php echo Atomik::url('logout'); ?>'>Kirjaudu ulos</a><br>
 
-<?php echo date("d-m-Y"); ?>
+Tänään on <?php echo date("d.m.Y"); ?>
 
 <ul>
 <?php foreach ($tilat as $tila) { ?>
@@ -22,8 +22,10 @@
 <ul>
 <?php if($varauksia != 0) {
     foreach($varaus as $rivi) { ?>
-    <li><?php echo $rivi['pvm']; ?> <?php echo $rivi['tila'] ?> 
-    <?php echo $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']) ?></li>
+    <li><?php echo $this->muotoile_paiva($rivi['pvm']); ?> <?php echo $rivi['tila'] ?> 
+    <?php echo $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']) ?>
+        <a href="<? echo Atomik::url('peruuta', array('tunniste' => $rivi['tunniste'])); ?>">
+        Peruuta varaus</a></li>
 <?php  }
 }?>
 </ul>

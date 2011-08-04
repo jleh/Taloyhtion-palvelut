@@ -5,13 +5,13 @@ Varaustie 2<br>
 1234 Helsinki<br>
 <p>
     <table>
+        <td>Varausnumero</td><td>Päivämäärä</td><td>Varattu tila</td><td>Aika</td><td>Hinta</td>
     <?php foreach($varaus as $rivi) { ?>
-        <tr>
-            <td>Varausnumero</td><td>Päivämäärä</td><td>Varattu tila</td><td>Aika</td><td>Hinta</td>
+        <tr>   
         </tr>
         <tr>
             <td><?php echo $rivi['tunniste']; ?></td>
-            <td><?php echo $rivi['pvm']; ?></td><td><?php echo $rivi['tila']; ?></td>
+            <td><?php echo $this->muotoile_paiva($rivi['pvm']); ?></td><td><?php echo $rivi['tila']; ?></td>
             <td><?php echo $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']); ?></td>
             <td><?php echo $rivi['hinta']; ?></td>
         </tr>

@@ -24,7 +24,7 @@ Atomik::set('session/alkuaika', $aika);
 $varatut_tunnit = $this->onkoVapaana($tila, $pvm); //Ei näytetä jo varattuja tunteja
 
 //Haetaan tilan tiedot
-$haku = Atomik_Db::query("SELECT * FROM tilat WHERE tila='$tila'");
+$haku = Atomik_Db::query("SELECT * FROM tilat WHERE tila=?", array($tila));
 $haku->execute();
 
 $vTila = $haku->fetchObject();

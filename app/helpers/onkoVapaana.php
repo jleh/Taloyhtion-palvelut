@@ -1,8 +1,8 @@
 <?php
 //Hakee tunnit joina tila on varattuna tiettynä päivinä
 function onkoVapaana($t, $p){
-    $haku = Atomik_Db::query("SELECT * FROM varaukset WHERE tila = '$t' 
-            AND pvm = '$p' ORDER BY alkuaika ASC");
+    $haku = Atomik_Db::query("SELECT * FROM varaukset WHERE tila = ? 
+            AND pvm = ? ORDER BY alkuaika ASC", array($t, $p));
     $haku->execute();
 
     //Tallennetaan jo varatut tunnit taulukkoon

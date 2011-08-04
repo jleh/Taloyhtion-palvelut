@@ -23,8 +23,8 @@
 <h3>Varaukset</h3>
 <table><tr><td></td>
 <?php //Kalenterin tulostus
-for($i = 0; $i < 14; $i++)
-   echo "<td>$date[$i]</td>"; ?>
+for($i = 0; $i <= 13; $i++){  ?>
+   <?php echo "<td>".$this->muotoile_paiva($date[$i])."</td>"; }?>
     </tr>
 
 <?php for($i = $tila['alkuaika']; $i < $tila['loppuaika']; $i++){ ?>

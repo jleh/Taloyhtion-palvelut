@@ -58,7 +58,7 @@ else{ //Tehdään varaus
     $koodi = rand(1000, 9999); //Ovikoodi
     
     //lasketaan vielä hinta
-    $haku = Atomik_Db::query("SELECT hinta FROM tilat WHERE tila='$tila'");
+    $haku = Atomik_Db::query("SELECT hinta FROM tilat WHERE tila=?", array($tila));
     $haku->execute();
     $t = $haku->fetch();
     $hinta = $t['hinta'] * $kesto;
