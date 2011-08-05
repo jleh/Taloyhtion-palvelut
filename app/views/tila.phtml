@@ -1,21 +1,17 @@
 <h1><?php echo $tila['tila']; ?></h1>
 
 
-<form action="muuta" method="post">
-<input type="hidden" name="tila" value="<?php echo $tila['tila']; ?>">
 <table>
   <tr>
     <td>Ensimmäinen varaus</td><td>Viimeinen varaus</td><td>Hinta</td><td>Muuta</td>
   </tr>
    <tr>
-     <td><input type="text" name="alkuaika" value="<?php echo $tila['alkuaika']; ?>">:00</td> 
-      <td><input type="text" name="loppuaika" value="<?php echo ($tila['loppuaika'] -1); ?>">:00</td> 
-      <td><input type="text" name="hinta" value ="<?php echo $tila['hinta']; ?>"> &#8364/h</td>
-      <td><input type="text" name="muuta" value="<?php echo $tila['muuta']; ?>"></td>
+     <td><?php echo $tila['alkuaika']; ?>:00</td> 
+      <td><?php echo ($tila['loppuaika'] -1); ?>:00</td> 
+      <td><?php echo $tila['hinta']; ?> &#8364/h</td>
+      <td><?php echo $tila['muuta']; ?></td>
    </tr>
 </table>
-<input type="submit" value="Tallenna muutokset">
-</form>
 <br>
 <a href="<?php echo Atomik::url('index'); ?>">Takaisin</a>
 <p>

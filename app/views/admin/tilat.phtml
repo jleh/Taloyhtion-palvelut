@@ -1,0 +1,40 @@
+<h1>Muokkaa tilojen tietoja</h1>
+
+<a href="<?php echo Atomik::url('admin/index'); ?>">Takaisin</a><p>
+
+<table style="border-collapse: collapse;">
+    <tr>
+        <td><b>Tila</b></td>
+        <td><b>Ensimmäinen varaus</b></td>
+        <td><b>Varaus päättyy</b></td>
+        <td><b>Hinta tunnilta</b></td>
+        <td><b>Muuta tietoa</b></td>
+    </tr>
+    <?php foreach($tilat as $tila){ ?>
+    <form action="muuta" method="post">
+    <input type="hidden" name="tila" value="<?php echo $tila['tila']; ?>"
+    <tr>
+        <td><?php echo $tila['tila']; ?></td>
+        <td>
+            <input type="text" name="alkuaika"
+                   value="<?php echo $tila['alkuaika']; ?>" size="2">:00
+        </td>
+        <td>
+            <input type="text" name="loppuaika"
+                   value="<?php echo $tila['loppuaika']; ?>" size="2">:00
+        </td>
+        <td>
+            <input type="text" name="hinta"
+                   value="<?php echo $tila['hinta']; ?>" size="5">
+        </td>
+        <td>
+            <input type="text" name="muuta"
+                   value="<?php echo $tila['muuta']; ?>">
+        </td>
+        <td>
+            <input type="submit" value="Muuta">
+        </td>
+    </tr>
+    </form>
+    <?php } ?>
+</table>

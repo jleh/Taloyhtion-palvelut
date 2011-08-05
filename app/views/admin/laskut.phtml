@@ -1,0 +1,36 @@
+<h1>Laskut</h1>
+
+<a href="<?php echo Atomik::url('admin/index'); ?>">Takaisin</a>
+<br>
+
+    <h3>Laskuta käyttäjiä</h3>
+        <?php foreach($users as $nimi){ ?>
+        <a href="<?php echo Atomik::url('teeLasku', array('user' => $nimi)); ?>" target="new">
+                <?php echo $nimi; ?></a><br>
+        <?php } ?>
+
+
+<h2>Laskut</h2>
+<table class="varaus">
+<?php if($laskuja != 0) { ?>
+    <tr>
+        <td class="varaus"><b>Viite</b></td>
+        <td class="varaus"><b>Varaaja</b></td>
+        <td class="varaus"><b>Eräpäivä</b></td>
+        <td class="varaus"><b>Summa</b></td>
+        <td class="varaus"><b>Maksun tila</b></td>
+        <td class="varaus"><b></b></td>
+    </tr>
+<?php foreach($laskut as $lasku){ ?>
+    <tr>
+        <td class="varaus"><?php echo $lasku['viite']; ?></td>
+        <td class="varaus"><?php echo $lasku['maksaja']; ?></td>
+        <td class="varaus"><?php echo $this->muotoile_paiva($lasku['erapaiva']); ?></td>
+        <td class="varaus"><?php echo $lasku['summa']; ?> €</td>
+        <td class="varaus"><?php echo $this->maksun_tila($lasku['maksettu']); ?></td>
+        <td class="varaus"><?php if(!$lasku['maksettu']) { ?>
+            <a href="<? echo Atomik::url('admin/merkitseMaksetuksi', array('viite' => $lasku['viite'])); ?>">
+                Merkitse maksetuksi</a> <?php } ?></td>
+    </tr>
+<?php } }?>
+</table>

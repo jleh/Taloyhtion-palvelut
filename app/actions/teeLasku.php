@@ -29,7 +29,7 @@ $tulos = $haku->fetch();
 if($tulos[0] == 0) { //Jos maksamattomia ei ole, ei tehdä laskuakaan
     $varaus = 0;
     Atomik::flash('Ei maksamattomia varauksia', 'error');
-    Atomik::redirect($this->testAdmin() ? 'laskut' : 'index');
+    Atomik::redirect($this->testAdmin() ? 'admin/laskut' : 'index');
     return;
 }
 
