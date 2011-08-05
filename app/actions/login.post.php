@@ -15,8 +15,8 @@ if (Atomik::get('session/user') == '') { //Ei kirjautunut sisään
     $pass = $data['pass'];
     
     //Tarkastetaan kirjautuminen tietokannasta
-    $haku = Atomik_Db::query("SELECT COUNT(*) FROM users WHERE nimi='$user' 
-            AND salasana = '$pass'");
+    $haku = Atomik_Db::query("SELECT COUNT(*) FROM users WHERE nimi= ? 
+            AND salasana = ?", array($user, md5($pass)));
     $haku->execute();
     
     $tulos = $haku->fetch();

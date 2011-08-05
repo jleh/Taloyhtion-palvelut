@@ -1,6 +1,7 @@
 <h1>Taloyhtion tilojen varaus</h1>
 
 <?php echo Atomik::get('session/user'); ?> kirjautuneena sisään. 
+<a href='<?php echo Atomik::url('vaihdaSalasana'); ?>'>Vaihda salasana</a> 
 <a href='<?php echo Atomik::url('logout'); ?>'>Kirjaudu ulos</a><br>
 
 Tänään on <?php echo date("d.m.Y"); ?>
