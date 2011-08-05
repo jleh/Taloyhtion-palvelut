@@ -26,17 +26,21 @@ body {
 	}
 
 
-table, td {
+table.varaus, td.varaus {
 	border: 1px solid;
 	border-collapse: collapse;
 }
 
 td.varattu {
-  background-color: #FF0000;
+    background-color: #FF0000;
+    border: 1px solid;
+    border-collapse: collapse;
 }
 
 td.vapaa {
-    background-color: #33FF33;  
+    background-color: #33FF33; 
+    border: 1px solid;
+    border-collapse: collapse;
 }
 
 .varaa {
@@ -50,4 +54,12 @@ a:visited {
 
 a.varaa {
     color: black;
+}
+
+table {
+    
+}
+
+.sunnuntai {
+    background-color: lightsalmon;
 }

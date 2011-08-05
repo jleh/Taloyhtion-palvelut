@@ -21,14 +21,14 @@
 <p>
 
 <h3>Varaukset</h3>
-<table><tr><td></td>
+<table class="varaus"><tr><td></td>
 <?php //Kalenterin tulostus
 for($i = 0; $i <= 13; $i++){  ?>
-   <?php echo "<td>".$this->muotoile_paiva($date[$i])."</td>"; }?>
+   <td class='varaus'> <?php echo $this->muotoile_paiva($date[$i]); ?></td> <?php } ?>
     </tr>
 
 <?php for($i = $tila['alkuaika']; $i < $tila['loppuaika']; $i++){ ?>
-   <tr><td><?php echo "$i:00"; ?></td>
+   <tr><td class="varaus"><?php echo "$i:00"; ?></td>
 <?php for($k = 0; $k < 14; $k++){
        $vt = 0;
        foreach ($varaus as $v){
