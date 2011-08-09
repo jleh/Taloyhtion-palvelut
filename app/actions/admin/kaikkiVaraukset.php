@@ -1,5 +1,7 @@
 <?php
 
+//Tulostetaan näkyville kaikki varaukset
+
 $this->isLoggedIn();
 $this->isAdministrator();
 
