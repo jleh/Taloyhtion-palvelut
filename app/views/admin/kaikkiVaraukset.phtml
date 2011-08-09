@@ -1,0 +1,29 @@
+<h1>Kaikki varaukset</h1>
+
+Tänään on <?php echo date("d.m.Y"); ?><br>
+<a href="<?php echo Atomik::url('admin/index'); ?>">Takaisin</a>
+<p>
+
+<table class="varaa">
+    <tr>
+        <td><b>Aika</b></td>
+        <td><b>Tila</b></td>
+        <td><b>Varausnumero</b></td>
+        <td><b>Varaaja</b></td>
+        <td><b>Ovikoodi</b></td>
+        <td><b>Laskutus</b></td>
+    </tr>
+    <?php foreach($varaukset as $varaus) { ?>
+    <tr>
+        <td>
+            <b><?php echo $this->muotoile_paiva($varaus['pvm']); ?></b> 
+            <?php echo $this->muotoile_aika($varaus['alkuaika'], $varaus['loppuaika']); ?>
+        </td>
+        <td><?php echo $varaus['tila']; ?></td>
+        <td><?php echo $varaus['tunniste']; ?></td>
+        <td><?php echo $varaus['varaaja'] ?></td>
+        <td><?php echo $varaus['ovikoodi'] ?></td>
+        <td><?php echo $this->onkoLaskutettu( $varaus['maksettu']); ?></td>
+    </tr>
+    <?php } ?>
+</table>
