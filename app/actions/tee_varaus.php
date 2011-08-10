@@ -43,6 +43,12 @@ while($onnistuu == true && $h < $loppuaika){
     $h++;
 }
 
+//Ei anneta tehdä varausta menneisyyteen
+$nyt = date("H");
+$tanaan = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+if($alku < $nyt && $pvm <= $tanaan)
+    $onnistuu = false;
+
 if($onnistuu == false){
     Atomik::flash("Varaus ei onnistu kyseiselle ajalle", "error");
     $url = Atomik::url('../tila', array('tila' => $tila));

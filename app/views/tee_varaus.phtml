@@ -1,6 +1,6 @@
 <h1>Tilan <?php echo $tila; ?> varaus</h1>
 
-Olet varannut tilan ajalle <b><?php echo "$pvm $alku - $loppuaika"; ?></b><br>
+Olet varannut tilan ajalle <b><?php echo $this->muotoile_paiva($pvm).' '.$this->muotoile_aika($alku, $loppuaika); ?></b><br>
 Varausnumerosi on <b><?php echo $tunniste; ?></b><br>
 Ovikoodi: <b><?php echo $koodi; ?></b><br><br>
 
