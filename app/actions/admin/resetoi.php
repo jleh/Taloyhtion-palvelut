@@ -1,4 +1,5 @@
 <?php
+//Isännöitsijä voi resetoida käyttäjän salasanan (asukas vaihtuu, salasana unohtunut...)
 $this->isLoggedIn();
 $this->isAdministrator();
 

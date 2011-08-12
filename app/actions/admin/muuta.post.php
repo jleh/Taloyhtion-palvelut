@@ -1,4 +1,6 @@
 <?php
+//Tilojen tietojen muutoksien tallennus
+
 $this->isLoggedIn(); //Kirjautumisen tarkastus
 $this->isAdministrator();
 
@@ -19,12 +21,14 @@ $data['alkuaika'] = (int)$data['alkuaika'];
 $data['loppuaika'] = (int)$data['loppuaika'];
 
 //Tarkastetaan syötteet
+//Aika
 if($data['alkuaika'] < 0 || !is_int($data['loppuaika']) < 0
         || $data['alkuaika'] > 23 || $data['loppuaika'] > 23){
     Atomik::flash('Virheellinen aika', 'error');
     Atomik::redirect('admin/tilat');
 }
 
+//Hinta
 $data['hinta'] = (float)$data['hinta'];
 if($data['hinta'] < 0) {
     Atomik::flash('Hinta ei voi olla negatiivinen', 'error');
