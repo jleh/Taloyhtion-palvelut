@@ -81,3 +81,7 @@ table {
 #login > table {
     padding-left: 20px;
 }
+
+#summa {
+	text-decoration: underline;
+}
