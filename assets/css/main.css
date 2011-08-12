@@ -63,3 +63,21 @@ table {
 .sunnuntai {
     background-color: lightsalmon;
 }
+
+#login {
+    margin-top: 50px;
+    margin-left: 50px;
+    border: solid black;
+    border-width: 1px;
+    width: 300px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+#login > h2 {
+    text-align: center;
+}
+
+#login > table {
+    padding-left: 20px;
+}
