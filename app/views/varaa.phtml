@@ -3,18 +3,29 @@
 
 <form action="tee_varaus" method="post" name="varaus"> 
     <input type="hidden" name="pvm" value="<?php echo $pvm; ?>">
+ Varaus päivälle: <?php echo $this->muotoile_paiva($pvm); ?><br>
  Varattava tila: <input type="hidden" name="tila" value="<?php echo $vTila->tila; ?>">
  <?php echo $vTila->tila; ?><br>
  Varaus alkaa: <input type="hidden" name="alku" value="<?php echo $aika; ?>"> 
  <?php echo $aika; ?>:00<br>
- Varaus p&auml;&auml;ttyy: <select name="loppu" onchange="LaskeHinta()">
+ Varaus p&auml;&auml;ttyy: <select id="loppu" onchange="LaskeHinta()">
     <?php $h = $aika;//Ei anneta varattavaksi jo varattuja tunteja
         do{ $h++; ?>
             <option value='<?php echo $h; ?>'><?php echo $h; ?>:00</option>
         <?php }while($varatut_tunnit[$h] == 0 && $h < ($vTila->loppuaika)) ?>
  </select><br>
 
-Varaus maksaa: <?php echo $vTila->hinta; ?> €/h<br>
+Varaus maksaa:
+ <span class="hinta"><?php echo $vTila->hinta; ?> </span> €/h<br>
+ <script>
+     //Näytetään paljonko varaus maksaa kun valitaan loppuaikaa
+     function LaskeHinta(){
+         var tunnit = $("select#loppu").attr("selectedIndex") + 1;
+         var hinta = <?php echo $vTila->hinta; ?>;
+         
+        $("span").text(tunnit*hinta);
+     }
+ </script>
     <br>
  <input type="submit" value="Tee varaus">
 </form>
