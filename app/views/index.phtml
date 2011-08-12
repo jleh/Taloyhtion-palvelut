@@ -37,8 +37,8 @@ Sinulla on <?php echo $maksamattomat; ?> kpl laskuttamattomia varauksia.<br>
         <td class="varaus"><?php echo $this->muotoile_aika($rivi['alkuaika'], $rivi['loppuaika']); ?> </td>
         <td class="varaus"><?php echo $rivi['ovikoodi']; ?></td>
         <td class="varaus">
-            <a href="<?php echo Atomik::url('peruuta', array('tunniste' => $rivi['tunniste'])); ?>">
-                Peruuta varaus</a>
+            <?php echo $this->peruutus($rivi['tunniste']); ?>
+                
         </td>
     </tr>
 <?php  }
