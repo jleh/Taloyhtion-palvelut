@@ -24,7 +24,9 @@
               <?php echo $this->muotoile_aika($varaus['alkuaika'], $varaus['loppuaika']); ?></td>
         <td class="varaus"><?php echo $varaus['tila']; ?></td>
         <td class="varaus"><?php echo $varaus['varaaja']; ?></td>
-        <td class="varaus">Peruuta varaus</td>
+        <td class="varaus">
+            <a href="<?php echo Atomik::url('admin/peruuta', array('tunniste' => $varaus['tunniste'])); ?>">Peruuta varaus</a>
+        </td>
     </tr>
 <?php } ?>
 
