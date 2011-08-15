@@ -17,7 +17,7 @@
 <p>
 
 <h3>Varaukset</h3>
-<table class="varaus"><tr><td></td>
+<table id="varaustaulukko"><tr><td class="varaus"></td>
 <?php //Kalenterin tulostus
 for($i = 0; $i <= 13; $i++){  ?>
    <td class='varaus'> <?php echo $this->muotoile_paiva($date[$i]); ?></td> <?php } ?>

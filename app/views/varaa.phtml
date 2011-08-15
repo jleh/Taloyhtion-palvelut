@@ -9,7 +9,7 @@
  <?php echo $vTila->tila; ?><br>
  Varaus alkaa: <input type="hidden" name="alku" value="<?php echo $aika; ?>"> 
  <?php echo $aika; ?>:00<br>
- Varaus p&auml;&auml;ttyy: <select id="loppu" onchange="LaskeHinta(<?php echo $vTila->hinta; ?>)">
+ Varaus p&auml;&auml;ttyy: <select name="loppu" id="loppu" onchange="LaskeHinta(<?php echo $vTila->hinta; ?>)">
     <?php $h = $aika;//Ei anneta varattavaksi jo varattuja tunteja
         do{ $h++; ?>
             <option value='<?php echo $h; ?>'><?php echo $h; ?>:00</option>

@@ -1,10 +1,14 @@
 <h1>Taloyhtion tilojen varaus</h1>
 
-<b><?php echo Atomik::get('session/user'); ?></b> kirjautuneena sisään. 
-<a href='<?php echo Atomik::url('vaihdaSalasana'); ?>'>Vaihda salasana</a> 
-<a href='<?php echo Atomik::url('logout'); ?>'>Kirjaudu ulos</a><br>
-
-Tänään on <?php echo date("d.m.Y"); ?>
+<div id="palkki">
+    <b><?php echo Atomik::get('session/user'); ?></b> kirjautuneena sisään. 
+    Tänään on <?php echo date("d.m.Y"); ?>
+    
+    <p id="asettelu">
+        <a href='<?php echo Atomik::url('vaihdaSalasana'); ?>'>Vaihda salasana</a> 
+        <a href='<?php echo Atomik::url('logout'); ?>'>Kirjaudu ulos</a> 
+    </p>
+</div>
 
 <ul>
 <?php foreach ($tilat as $tila) { ?>

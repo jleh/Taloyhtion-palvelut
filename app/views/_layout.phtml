@@ -16,7 +16,7 @@
 		<ul id="messages">
 			<?php foreach (A('flash:all') as $label => $messages): ?>
 				<?php foreach ($messages as $message): ?>
-					<li class="<?php echo $label ?>"><?php echo $message ?></li>
+					<li class="<?php echo $label ?>"><b><?php echo $message ?></b></li>
 				<?php endforeach; ?>
 			<?php endforeach; ?>
 		</ul>

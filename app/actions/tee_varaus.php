@@ -7,7 +7,7 @@ $rule = array(
 );
 
 if(($data = Atomik::filter($_POST, $rule)) === false){ //Parametrien suodatus
-    Atomik::flash('Varaus ei onnistu', 'error');
+    Atomik::flash('Varaus ei onnistu, virheelliset tiedot', 'error');
     Atomik::redirect('index');
     return;
 }
