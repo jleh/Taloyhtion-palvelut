@@ -5,7 +5,7 @@
 
     <h3>Laskuta käyttäjiä</h3>
         <?php foreach($users as $nimi){ ?>
-        <a href="<?php echo Atomik::url('teeLasku', array('user' => $nimi)); ?>" target="new">
+        <a href="<?php echo Atomik::url('teeLasku', array('user' => $nimi)); ?>">
                 <?php echo $nimi; ?></a></li><br>
         <?php } ?>
 

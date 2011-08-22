@@ -11,6 +11,7 @@
 		<?php foreach (A('scripts', array()) as $script): ?>
 		<script type="text/javascript" src="<?php echo Atomik::appAsset($script) ?>"></script>
 		<?php endforeach; ?>
+                <script src="<?php echo Atomik::asset('assets/js/varaus.js'); ?>"></script>
 	</head>
 	<body>
 		<ul id="messages">

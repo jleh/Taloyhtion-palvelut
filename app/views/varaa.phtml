@@ -1,7 +1,6 @@
 <?php $this->isLoggedIn(); //Kirjautumisen tarkastus;?>
 <h1>Varaa tila</h1>
 
-<script src="<?php echo Atomik::asset('assets/js/varaus.js'); ?>"></script>
 <form action="tee_varaus" method="post" name="varaus"> 
     <input type="hidden" name="pvm" value="<?php echo $pvm; ?>">
  Varaus päivälle: <?php echo $this->muotoile_paiva($pvm); ?><br>

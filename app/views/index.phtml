@@ -19,11 +19,12 @@
 <br>
 <?php if(!$this->testAdmin()){ ?>
 Sinulla on <?php echo $maksamattomat; ?> kpl laskuttamattomia varauksia.<br>
-<a href="<? echo Atomik::url('teeLasku', array('user' => Atomik::get('session/user'))); ?>"
-   target="new">Tee lasku varauksistasi</a><br>
+<a href="<? echo Atomik::url('teeLasku', array('user' => Atomik::get('session/user'))); ?>">
+    Tee lasku varauksistasi</a><br>
 <?php } else { ?>
    <a href="<?php echo Atomik::url('admin'); ?>">Isännöitsijän toiminnot</a><br>
 <?php } ?>
+   <?php if($varauksia != 0) { ?>
 <h3>Omat varaukset</h3>
 <table class="varaus">
     <tr>
@@ -33,8 +34,8 @@ Sinulla on <?php echo $maksamattomat; ?> kpl laskuttamattomia varauksia.<br>
         <td class="varaus"><b>Ovikoodi</b></td>
         <td ></td>
     </tr>
-<?php if($varauksia != 0) {
-    foreach($varaus as $rivi) { ?>
+
+   <?php foreach($varaus as $rivi) { ?>
     <tr>
         <td class="varaus"><b><?php echo $this->muotoile_paiva($rivi['pvm']); ?></b></td>
         <td class="varaus"> <?php echo $rivi['tila']; ?></td> 
