@@ -22,7 +22,7 @@ $varaaja = Atomik::get('session/user');
 $kesto = $loppuaika - $alku;
 
 //Tarkastetaan että varaus yritetään tehdä sallitulle ajalle
-$haku = Atomik_Db::query("SELECT * FROM tilat WHERE tila='$tila'");
+$haku = Atomik_Db::query("SELECT * FROM tilat WHERE tila=?", array($tila));
 $haku->execute();
 $tulos = $haku->fetch();
 
